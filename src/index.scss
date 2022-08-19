@@ -8,6 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #1d1e2c;
 }
 
 code {
@@ -47,10 +48,25 @@ ul {
   padding: 0;
 }
 
-div {
+div,
+input {
   box-sizing: border-box;
 }
 
 //variables
 :root {
+  // colors
+  // --main-background: #fcf7f8;
+  --main-background: #f6f4f4;
+  // --dark-background: #ced3dc;
+  --dark-background: #ede9e9;
+  --accent-color: #a31621;
+  --light-blue: #90c2e7;
+  --dark-blue: #4e8098;
+  --main-font-color: #1d1e2c;
+  --secondary-font-color: #59656f;
+  --border-color: #bcc3c8;
+  // borders
+  --main-border-radius: 20px;
+  --secondary-border-radius: 10px;
 }

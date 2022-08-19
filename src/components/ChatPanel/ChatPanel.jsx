@@ -1,13 +1,17 @@
 import ChatList from 'components/ChatList';
 import Filter from 'components/Filter';
 
+import s from './ChatPanel.module.scss';
+
 const ChatPanel = () => {
   return (
-    <div>
-      ChatPanel
-      <Filter />
+    <section className={s.chatControlsSection}>
+      <div className={s.chatControlsHeader}>
+        UserLogo
+        <Filter />
+      </div>
       <ChatList />
-    </div>
+    </section>
   );
 };
 

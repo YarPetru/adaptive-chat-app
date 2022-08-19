@@ -3,11 +3,11 @@ import Title from './Title';
 
 const Conversation = () => {
   return (
-    <div>
+    <section>
       <Title />
       Conversation
       <MessageForm />
-    </div>
+    </section>
   );
 };
 

@@ -1,0 +1,62 @@
+.chatsWrapper {
+  padding: 15px 0;
+  font-weight: 400;
+}
+
+.title {
+  padding: 0px 15px;
+  color: var(--dark-blue);
+  font-weight: 400;
+}
+
+.noChatsMsg {
+  padding: 15px;
+  font-size: 14px;
+}
+
+.chatItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+.mainContentWrapper {
+  display: flex;
+  align-items: center;
+  width: 75%;
+}
+
+.contactStatusWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+}
+
+.contactMsgWrapper {
+  margin-left: 10px;
+  width: 75%;
+}
+
+.chatName {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.lastMsgText {
+  color: var(--secondary-font-color);
+  font-size: 12px;
+}
+
+.lastMsgDate {
+  width: 20%;
+  color: var(--secondary-font-color);
+  font-size: 12px;
+}
