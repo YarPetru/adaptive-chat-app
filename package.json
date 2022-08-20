@@ -1,8 +1,8 @@
 {
-  "name": "adaptive-chat-project",
+  "name": "adaptive-chat-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yarpetru.github.io/adaptive-chat-project/",
+  "homepage": "https://yarpetru.github.io/adaptive-chat-app/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.4",
     "@testing-library/jest-dom": "^5.16.3",
