@@ -21,7 +21,7 @@ const Filter = ({ value }) => {
         type="text"
         name="filter"
         title="Find chat"
-        placeholder="Find chat by contact name"
+        placeholder="Search or start new chat"
         required
         onChange={handleInputChange}
       />

@@ -1,11 +1,14 @@
-import MessageForm from './MessageForm';
 import Title from './Title';
+import Dialog from './Dialog';
+import MessageForm from './MessageForm';
+
+import s from './Conversation.module.scss';
 
 const Conversation = () => {
   return (
-    <section>
+    <section className={s.conversationSection}>
       <Title />
-      Conversation
+      <Dialog />
       <MessageForm />
     </section>
   );

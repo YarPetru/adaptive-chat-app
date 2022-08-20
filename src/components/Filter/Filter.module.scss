@@ -1,15 +1,18 @@
 .filterInput {
   width: 100%;
-  padding: 4px 8px;
+  padding: 4px 12px;
   outline: none;
   border: 1px solid var(--border-color);
   border-radius: var(--main-border-radius);
+  background-color: var(--main-background);
+  color: var(--main-font-color);
 
   font-size: 16px;
   font-family: inherit;
 
   &::placeholder {
-    color: var(--border-color);
-    font-weight: 400;
+    color: var(--secondary-font-color);
+    font-size: 14px;
+    font-weight: 300;
   }
 }

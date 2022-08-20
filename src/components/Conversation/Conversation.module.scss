@@ -1,0 +1,79 @@
+// Conversation
+
+.conversationSection {
+  position: relative;
+  box-sizing: border-box;
+  width: 60%;
+  border-left: 1px solid var(--border-color);
+}
+
+// Title
+.titleWrapper {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+  width: 100%;
+  padding: 15px;
+  background-color: var(--dark-background);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.chatTitle {
+  margin-left: 10px;
+}
+.status {
+  margin-left: 10px;
+}
+
+// Dialog
+.dialogWrapper {
+  padding: 15px;
+  overflow-y: auto;
+}
+
+// MessageForm
+
+.sendMsgForm {
+  position: absolute;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15px;
+  background-color: var(--dark-background);
+  border-top: 1px solid var(--border-color);
+}
+
+.sendMsgInput {
+  width: 100%;
+
+  padding: 4px 12px;
+  outline: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--main-border-radius);
+  color: var(--main-font-color);
+
+  font-size: 16px;
+  font-family: inherit;
+  // resize: none;
+
+  &::placeholder {
+    color: var(--secondary-font-color);
+    font-weight: 300;
+  }
+}
+
+.sendMsgBtn {
+  position: absolute;
+  top: calc(50%);
+  transform: translateY(-50%);
+  right: 30px;
+  outline: none;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.sendIcon:hover {
+  color: red;
+}

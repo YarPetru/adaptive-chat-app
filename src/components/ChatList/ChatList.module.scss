@@ -1,12 +1,17 @@
 .chatsWrapper {
-  padding: 15px 0;
   font-weight: 400;
 }
 
 .title {
-  padding: 0px 15px;
+  padding: 15px;
   color: var(--dark-blue);
   font-weight: 400;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.chatList {
+  max-height: 50vh;
+  overflow: auto;
 }
 
 .noChatsMsg {
