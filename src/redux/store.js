@@ -3,15 +3,15 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import {
   persistStore,
   persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
+  //   FLUSH,
+  //   REHYDRATE,
+  //   PAUSE,
+  //   PERSIST,
+  //   PURGE,
+  //   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-// import { cardInfoApi } from './cardInfo/cardInfoSlice'; // тут будет генератор случайных ответов
+// import { answerApi } from './answerApi/answerSlice'; // тут будет генератор случайных ответов
 
 import chats from './reducers';
 
@@ -25,16 +25,17 @@ const persistedReducer = persistReducer(persistConfig, chats);
 
 export const store = configureStore({
   reducer: {
-    // [cardInfoApi.reducerPath]: cardInfoApi.reducer, // тут будет генератор случайных ответов
+    // [answerApi.reducerPath]: answerApi.reducer, // тут будет генератор случайных ответов
     chat: persistedReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
+      //   {
+      //     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      //   },
     }),
-    // cardInfoApi.middleware, // тут будет генератор случайных ответов
+    // answerApi.middleware, // тут будет генератор случайных ответов
   ],
 });
 

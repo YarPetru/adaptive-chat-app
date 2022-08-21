@@ -19,17 +19,20 @@ const chats = createReducer(
       history: [
         {
           text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, voluptates!',
-          //   date: new Date('2021-12-17T03:24:00'),
+          date: new Date('2021-12-11T09:24:00'),
+          //   .toLocaleString('en-US'),
           type: 'upcoming',
         },
         {
-          text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, voluptates!',
-          //   date: new Date('2021-12-19T03:40:00'),
+          text: 'Lorem, ipsum.',
+          date: new Date('2021-12-19T03:24:00'),
+          //   .toLocaleString('en-US'),
           type: 'upcoming',
         },
         {
-          text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, voluptates!',
-          //   date: new Date('2021-12-19T09:24:00'),
+          text: 'Lorem ipsum dolor sit amet consectetur.',
+          date: new Date('2021-12-19T09:24:00'),
+          //   .toLocaleString('en-US', {  month: 'long',})
           type: 'incoming',
         },
       ],
@@ -67,17 +70,17 @@ const chats = createReducer(
       history: [
         {
           text: 'Lorem ipsum, dolor sit amet consectetur adipisicing.',
-          //   date: new Date('2021-12-17T03:24:00'),
+          date: '2021-12-17T03:24:00',
           type: 'incoming',
         },
         {
           text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus saepe odio ullam.',
-          //   date: new Date('2021-12-19T03:40:00'),
+          date: '2021-12-19T03:40:00',
           type: 'upcoming',
         },
         {
           text: 'Lorem ipsum dolor sit amet.',
-          //   date: new Date('2021-12-19T09:24:00'),
+          date: '2021-12-19T09:24:00',
           type: 'incoming',
         },
       ],
@@ -91,17 +94,17 @@ const chats = createReducer(
       history: [
         {
           text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, voluptates!',
-          //   date: new Date('2021-12-17T03:24:00'),
+          date: '2021-12-17T03:24:00',
           type: 'upcoming',
         },
         {
           text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, voluptates!',
-          //   date: new Date('2021-12-19T03:40:00'),
+          date: '2021-12-19T03:40:00',
           type: 'upcoming',
         },
         {
           text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, voluptates!',
-          //   date: new Date('2021-12-19T09:24:00'),
+          date: '2021-12-19T09:24:00',
           type: 'incoming',
         },
       ],

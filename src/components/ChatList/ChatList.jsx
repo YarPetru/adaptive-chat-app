@@ -14,14 +14,8 @@ const ChatList = () => {
   );
 
   const onChatClick = currentChat => {
-    // console.log(currentChat);
     dispatch(actions.selectChat(currentChat));
   };
-
-  // const onChatClick = chatId => {
-  //   console.log(chatId);
-  //   dispatch(actions.selectChat(chatId));
-  // };
 
   return (
     <>
@@ -62,10 +56,13 @@ const ChatList = () => {
                   <p className={s.lastMsgDate}>
                     {chat.history[chat.history.length - 1].date.toLocaleString(
                       'en-US'
+                      // {
+                      //   month: 'long',
+                      // }
                     )}
                   </p>
                 )}
-                <p className={s.lastMsgDate}>10 Jun 2021</p>
+                {/* <p className={s.lastMsgDate}>10 Jun 2021</p> */}
               </li>
             ))}
           </ul>
