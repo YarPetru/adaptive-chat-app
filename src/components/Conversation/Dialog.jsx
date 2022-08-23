@@ -1,10 +1,21 @@
 import { useSelector } from 'react-redux/es/exports';
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 import s from './Conversation.module.scss';
 
 const Dialog = () => {
-  const messages = useSelector(state => state.chat.activeChat.history);
-  console.log(messages);
+  const activeChatId = useSelector(state => state.chat.activeChatId);
+  const chats = useSelector(state => state.chat.chats);
+  // const newMessageData = useSelector(state => state.chat.listing);
+  const [activeChat] = chats.filter(chat => chat.id === activeChatId);
+
+  const messages = activeChat?.history;
+
+  // for (const chat of chats) {
+  //   if (chat.id === newMessageData.id) {
+  //     let chatHistory = [...chat.history, newMessageData.data];
+  //     console.log(chatHistory);
+  //   }
+  // }
 
   return (
     <div className={s.dialogWrapper}>
@@ -12,25 +23,49 @@ const Dialog = () => {
         {messages &&
           messages.map(message => (
             <li
-              key={message.date}
+              key={nanoid()}
               className={
                 message.type === 'upcoming'
                   ? s.upcomingMessageItem
                   : s.incomingMessageItem
               }
             >
-              <p className={s.upcomingMsg}>{message.text}</p>
-
-              {/* варіант з розподілом рівнем глибше */}
-              {/* <div className={s.messageWrapper}>
-                {message.type === 'upcoming' && (
-                  <p className={s.upcomingMsg}>{message.text}</p>
-                )}
+              <div className={s.messageWrapper}>
                 {message.type === 'incoming' && (
-                  <p className={s.incomingMsg}>{message.text}</p>
+                  <img
+                    src={activeChat.photo}
+                    alt={`${activeChat.name} avatar`}
+                    width="50"
+                  />
                 )}
-              </div> */}
-              {/* <div className={s.messageWrapper}>{message.text}</div> */}
+                <p
+                  className={
+                    message.type === 'upcoming'
+                      ? s.upcomingMessageText
+                      : s.incomingMessageText
+                  }
+                >
+                  {message.text}
+                </p>
+              </div>
+              {message.date && (
+                <p
+                  className={
+                    message.type === 'upcoming'
+                      ? s.upcomingDate
+                      : s.incomingDate
+                  }
+                >
+                  {message.date.toLocaleString('en-US', {
+                    month: 'numeric',
+                    day: 'numeric',
+                    year: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                  })}
+                </p>
+              )}
             </li>
           ))}
       </ul>

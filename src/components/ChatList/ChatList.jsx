@@ -4,8 +4,14 @@ import * as actions from 'redux/actions';
 import s from './ChatList.module.scss';
 
 const ChatList = () => {
+  // -----unnormalized reducer
   const chats = useSelector(state => state.chat.chats);
+
   const filterValue = useSelector(state => state.chat.filter);
+
+  // -----NORMalized reducer
+  // const chats = useSelector(state => state.chat.chats.byId);
+  // console.log(chats);
 
   const dispatch = useDispatch();
 
@@ -13,8 +19,8 @@ const ChatList = () => {
     item.name.toLowerCase().includes(filterValue.toLowerCase())
   );
 
-  const onChatClick = currentChat => {
-    dispatch(actions.selectChat(currentChat));
+  const onChatClick = currentChatId => {
+    dispatch(actions.selectChat(currentChatId));
   };
 
   return (
@@ -32,7 +38,7 @@ const ChatList = () => {
                 data-id={chat.id}
                 key={chat.id}
                 className={s.chatItem}
-                onClick={() => onChatClick(chat)}
+                onClick={() => onChatClick(chat.id)}
               >
                 <div className={s.mainContentWrapper}>
                   <div className={s.contactStatusWrapper}>
@@ -56,9 +62,6 @@ const ChatList = () => {
                   <p className={s.lastMsgDate}>
                     {chat.history[chat.history.length - 1].date.toLocaleString(
                       'en-US'
-                      // {
-                      //   month: 'long',
-                      // }
                     )}
                   </p>
                 )}

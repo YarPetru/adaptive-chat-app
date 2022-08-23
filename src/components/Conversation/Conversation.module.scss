@@ -15,12 +15,15 @@
 
   width: 100%;
   padding: 15px;
+
   background-color: var(--dark-background);
   border-bottom: 1px solid var(--border-color);
 }
 
 .chatTitle {
   margin-left: 10px;
+  font-size: var(--title-font-size);
+  font-weight: 400;
 }
 .status {
   margin-left: 10px;
@@ -28,51 +31,62 @@
 
 // Dialog
 .dialogWrapper {
-  padding: 15px;
-  overflow-y: auto;
+  padding-bottom: 65px;
+  // overflow-y: scroll;
 }
 
 .messageList {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-
-.messageItem {
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
+  max-height: 50vh;
+  overflow: auto;
 }
 
 .upcomingMessageItem {
   align-self: flex-end;
-  background-color: red;
+  padding: 10px 15px;
 }
 
 .incomingMessageItem {
-  background-color: blue;
+  width: 70%;
+  padding: 10px;
 }
 
 .messageWrapper {
-  // padding: 4px 12px;
-  border-radius: var(--main-border-radius);
+  display: flex;
+  align-items: center;
 }
 
-.upcomingMsg {
-  text-align: left;
+.upcomingMessageText {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 18px;
+  font-size: var(--main-font-size);
+  font-weight: 400;
   border-radius: var(--main-border-radius);
+  background-color: var(--light-blue);
+}
+
+.incomingMessageText {
+  composes: upcomingMessageText;
+
+  margin-left: 10px;
   background-color: var(--dark-blue);
   color: white;
 }
 
-.incomingMsg {
+.upcomingDate {
   text-align: right;
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: var(--main-border-radius);
-  background-color: var(--light-blue);
+  font-size: var(--small-font-size);
+  margin-top: 5px;
+  padding-right: 15px;
+  color: var(--secondary-font-color);
+}
+
+.incomingDate {
+  composes: upcomingDate;
+  text-align: left;
+  padding-left: 75px;
 }
 
 // MessageForm
@@ -96,7 +110,7 @@
   border-radius: var(--main-border-radius);
   color: var(--main-font-color);
 
-  font-size: 16px;
+  font-size: var(--main-font-size);
   font-family: inherit;
   // resize: none;
 

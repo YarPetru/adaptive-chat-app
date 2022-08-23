@@ -11,7 +11,7 @@ import {
   //   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-// import { answerApi } from './answerApi/answerSlice'; // тут будет генератор случайных ответов
+import { answerApi } from './answerApi/answerSlice';
 
 import chats from './reducers';
 
@@ -25,7 +25,7 @@ const persistedReducer = persistReducer(persistConfig, chats);
 
 export const store = configureStore({
   reducer: {
-    // [answerApi.reducerPath]: answerApi.reducer, // тут будет генератор случайных ответов
+    [answerApi.reducerPath]: answerApi.reducer,
     chat: persistedReducer,
   },
   middleware: getDefaultMiddleware => [
@@ -35,7 +35,7 @@ export const store = configureStore({
       //     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       //   },
     }),
-    // answerApi.middleware, // тут будет генератор случайных ответов
+    answerApi.middleware,
   ],
 });
 

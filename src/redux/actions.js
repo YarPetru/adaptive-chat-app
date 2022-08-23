@@ -18,6 +18,13 @@ export const createChat = createAction(
   })
 );
 
+export const sendMessage = createAction('chats/send_message', (id, text) => ({
+  payload: {
+    id,
+    data: { text, date: new Date(), type: 'upcoming' },
+  },
+}));
+
 export const deleteChat = createAction('chats/delete_chat');
 
 export const selectChat = createAction('chats/select_chat');

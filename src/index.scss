@@ -9,6 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #1d1e2c;
+  font-size: 14px;
 }
 
 code {
@@ -69,4 +70,9 @@ input {
   // borders
   --main-border-radius: 20px;
   --secondary-border-radius: 10px;
+  // font
+  --main-font-size: 14px;
+  --title-font-size: 20px;
+  --small-font-size: 10px;
+  --medium-font-size: 12px;
 }
