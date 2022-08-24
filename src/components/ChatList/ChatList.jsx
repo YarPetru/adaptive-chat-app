@@ -119,7 +119,11 @@ const ChatList = () => {
                   <p className={s.lastMsgDate}>
                     {messagesObj[
                       chat.messages[chat.messages.length - 1]
-                    ].date.toLocaleString('en-US')}
+                    ].date.toLocaleString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}
                   </p>
                 </li>
               ))}
