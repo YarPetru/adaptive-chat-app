@@ -1,9 +1,14 @@
 import { useSelector } from 'react-redux/es/exports';
 
+// import chatSelectors from 'redux/selectors';
+
 import s from './Conversation.module.scss';
 
 const Title = () => {
-  const currentChat = useSelector(state => state.chat.activeChat);
+  // const currentChat = useSelector(chatSelectors.getCurrentChat());
+  const currentChat = useSelector(
+    state => state.listing.chats.byId[state.listing.activeChatId]
+  );
 
   return (
     <div className={s.titleWrapper}>

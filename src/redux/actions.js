@@ -6,24 +6,38 @@ const generator = new AvatarGenerator();
 
 export const createChat = createAction(
   'chats/create_chat',
-  (name, isOnline, isViewed, history) => ({
+  (name, isOnline, isViewed) => ({
     payload: {
       id: nanoid(),
       name,
       photo: generator.generateRandomAvatar(),
       isOnline,
       isViewed,
-      history,
     },
   })
 );
 
-export const sendMessage = createAction('chats/send_message', (id, text) => ({
-  payload: {
-    id,
-    data: { text, date: new Date(), type: 'upcoming' },
-  },
-}));
+// export const sendMessage = createAction('chats/send_message', text => ({
+//   payload: {
+//     text,
+//     date: new Date(),
+//     type: 'upcoming',
+//   },
+// }));
+
+export const sendMessage = createAction(
+  'chats/send_message',
+  (chatId, name, text, type) => ({
+    payload: {
+      chatId,
+      id: nanoid(),
+      name,
+      text,
+      date: new Date(),
+      type,
+    },
+  })
+);
 
 export const deleteChat = createAction('chats/delete_chat');
 

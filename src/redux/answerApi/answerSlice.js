@@ -17,4 +17,4 @@ export const answerApi = createApi({
   }),
 });
 
-export const { useGetAnswerQuery } = answerApi;
+export const { useGetAnswerQuery, useLazyGetAnswerQuery } = answerApi;

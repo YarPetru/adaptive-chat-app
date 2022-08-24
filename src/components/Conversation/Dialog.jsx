@@ -1,27 +1,36 @@
 import { useSelector } from 'react-redux/es/exports';
 import { nanoid } from 'nanoid';
+
+import chatSelectors from 'redux/selectors';
 import s from './Conversation.module.scss';
 
 const Dialog = () => {
-  const activeChatId = useSelector(state => state.chat.activeChatId);
-  const chats = useSelector(state => state.chat.chats);
-  // const newMessageData = useSelector(state => state.chat.listing);
-  const [activeChat] = chats.filter(chat => chat.id === activeChatId);
+  const messagesObj = useSelector(chatSelectors.getMessages).byId;
 
-  const messages = activeChat?.history;
+  const currentChatId = useSelector(chatSelectors.getActiveChatId);
 
-  // for (const chat of chats) {
-  //   if (chat.id === newMessageData.id) {
-  //     let chatHistory = [...chat.history, newMessageData.data];
-  //     console.log(chatHistory);
-  //   }
-  // }
+  const currentChat = useSelector(
+    state => state.listing.chats.byId[currentChatId]
+  );
+
+  const currentChatMessageIds = currentChat?.messages;
+
+  const currentMessagesObj = Object.keys(messagesObj)
+    .filter(key => currentChatMessageIds?.includes(key))
+    .reduce((obj, key) => {
+      obj[key] = messagesObj[key];
+      return obj;
+    }, {});
+
+  const currentMessagesArr = Object.keys(currentMessagesObj).map(
+    id => currentMessagesObj[id]
+  );
 
   return (
     <div className={s.dialogWrapper}>
       <ul className={s.messageList}>
-        {messages &&
-          messages.map(message => (
+        {currentMessagesArr &&
+          currentMessagesArr.map(message => (
             <li
               key={nanoid()}
               className={
@@ -33,8 +42,8 @@ const Dialog = () => {
               <div className={s.messageWrapper}>
                 {message.type === 'incoming' && (
                   <img
-                    src={activeChat.photo}
-                    alt={`${activeChat.name} avatar`}
+                    src={currentChat.photo}
+                    alt={`${currentChat.name} avatar`}
                     width="50"
                   />
                 )}

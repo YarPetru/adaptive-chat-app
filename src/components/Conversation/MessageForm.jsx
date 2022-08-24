@@ -4,17 +4,37 @@ import { IconContext } from 'react-icons';
 import { MdOutlineSend } from 'react-icons/md';
 
 import { sendMessage } from 'redux/actions';
+import chatSelectors from 'redux/selectors';
+import { useLazyGetAnswerQuery } from 'redux/answerApi/answerSlice';
 
 import s from './Conversation.module.scss';
 
 const MessageForm = () => {
   const [msg, setMsg] = useState('');
+  // const [isTyping, setIsTyping] = useState(false);
 
-  const activeChatId = useSelector(state => state.chat.activeChatId);
-  // const chats = useSelector(state => state.chat.chats);
-  // const newMessage = useSelector(state => state.chat.listing);
+  const activeChatId = useSelector(chatSelectors.getActiveChatId);
+
+  const currentChat = useSelector(
+    state => state.listing.chats.byId[activeChatId]
+  );
 
   const dispatch = useDispatch();
+
+  const [getAnswer, { data: answer, error: getAnswerError }] =
+    useLazyGetAnswerQuery();
+
+  const rednerAnswer = () => {
+    getAnswer();
+    dispatch(
+      sendMessage(currentChat.id, currentChat.name, answer.value, 'incoming')
+    );
+    !answer.value &&
+      getAnswerError &&
+      alert(
+        'Ups.Something went wrong. We can`t deliver the answer. Try again please'
+      );
+  };
 
   const handleInputChange = e => {
     setMsg(e.currentTarget.value);
@@ -22,9 +42,9 @@ const MessageForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(msg);
-    dispatch(sendMessage(activeChatId, msg));
+    dispatch(sendMessage(currentChat.id, currentChat.name, msg, 'upcoming'));
     setMsg('');
+    setTimeout(rednerAnswer, 10000);
   };
 
   return (

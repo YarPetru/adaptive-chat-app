@@ -26,7 +26,7 @@ const persistedReducer = persistReducer(persistConfig, chats);
 export const store = configureStore({
   reducer: {
     [answerApi.reducerPath]: answerApi.reducer,
-    chat: persistedReducer,
+    listing: persistedReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
