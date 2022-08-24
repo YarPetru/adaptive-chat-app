@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux/es/exports';
 import { findChat } from 'redux/actions';
 
+import { ReactComponent as SearchIcon } from '../../img/search-img.svg';
 import s from './Filter.module.scss';
 
 const Filter = ({ value }) => {
@@ -22,9 +23,10 @@ const Filter = ({ value }) => {
         name="filter"
         title="Find chat"
         placeholder="Search or start new chat"
-        required
+        autoComplete="off"
         onChange={handleInputChange}
       />
+      <SearchIcon className={s.searchIcon} width="14" />
     </div>
   );
 };

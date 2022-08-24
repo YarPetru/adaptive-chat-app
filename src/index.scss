@@ -57,9 +57,7 @@ input {
 //variables
 :root {
   // colors
-  // --main-background: #fcf7f8;
   --main-background: #f6f4f4;
-  // --dark-background: #ced3dc;
   --dark-background: #ede9e9;
   --accent-color: #a31621;
   --light-blue: #90c2e7;
@@ -75,4 +73,6 @@ input {
   --title-font-size: 20px;
   --small-font-size: 10px;
   --medium-font-size: 12px;
+  // transition
+  --basic-transition: 150ms cubic-bezier(0, 0, 1, 1) 150ms;
 }

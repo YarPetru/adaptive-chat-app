@@ -1,6 +1,10 @@
+.filterWrapper {
+  position: relative;
+}
+
 .filterInput {
   width: 100%;
-  padding: 4px 12px;
+  padding: 4px 32px;
   outline: none;
   border: 1px solid var(--border-color);
   border-radius: var(--main-border-radius);
@@ -15,4 +19,13 @@
     font-size: var(--main-font-size);
     font-weight: 300;
   }
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  fill: var(--secondary-font-color);
+  transform: translateY(-50%);
+  // transition: var(--basic-transition);
 }

@@ -1,10 +1,8 @@
 .mainContainer {
   display: flex;
-  flex-wrap: wrap;
   width: 1170px;
-  // max-height: 600px;
+  height: 600px;
   margin: 0 auto;
   background-color: var(--main-background);
   border: 1px solid var(--border-color);
-  // padding: 15px;
 }

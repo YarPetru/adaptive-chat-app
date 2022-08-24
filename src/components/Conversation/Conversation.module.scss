@@ -27,19 +27,37 @@
 }
 .status {
   margin-left: 10px;
+  font-size: var(--small-font-size);
+  color: var(--secondary-font-color);
+}
+
+.avatarWrapper {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  width: 60px;
+}
+
+.userAvatar {
+  border-radius: 50%;
+}
+
+.checkPic {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
 
 // Dialog
 .dialogWrapper {
-  padding-bottom: 65px;
-  // overflow-y: scroll;
+  // padding-bottom: 65px;
 }
 
 .messageList {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-height: 50vh;
+  max-height: 400px;
   overflow: auto;
 }
 
@@ -129,8 +147,4 @@
   border: none;
   background-color: white;
   cursor: pointer;
-}
-
-.sendIcon:hover {
-  color: red;
 }

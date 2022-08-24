@@ -3,17 +3,26 @@ import { nanoid } from 'nanoid';
 import { AvatarGenerator } from 'random-avatar-generator';
 
 import {
-  createChat,
   sendMessage,
-  deleteChat,
   selectChat,
   findChat,
+  // createChat,
+  // deleteChat,
 } from './actions';
 
 const generator = new AvatarGenerator();
 
-const chatsId = [nanoid(), nanoid()];
-const msgId = [nanoid(), nanoid(), nanoid(), nanoid(), nanoid()];
+const chatsId = [nanoid(), nanoid(), nanoid()];
+const msgId = [
+  nanoid(),
+  nanoid(),
+  nanoid(),
+  nanoid(),
+  nanoid(),
+  nanoid(),
+  nanoid(),
+  nanoid(),
+];
 
 const chats = createReducer(
   {
@@ -23,7 +32,6 @@ const chats = createReducer(
         name: 'Nancy Pelocy',
         photo: generator.generateRandomAvatar(),
         isOnline: true,
-        isViewed: true,
         messages: [msgId[0], msgId[1], msgId[2]],
       },
       [chatsId[1]]: {
@@ -31,8 +39,14 @@ const chats = createReducer(
         name: 'Victor Huho',
         photo: generator.generateRandomAvatar(),
         isOnline: true,
-        isViewed: true,
         messages: [msgId[3], msgId[4]],
+      },
+      [chatsId[2]]: {
+        id: chatsId[2],
+        name: 'Chuck Norris',
+        photo: generator.generateRandomAvatar(),
+        isOnline: false,
+        messages: [msgId[5], msgId[6], msgId[7]],
       },
     },
     ids: [chatsId[0], chatsId[1]],
@@ -43,12 +57,12 @@ const chats = createReducer(
       const msgId = action.payload.id;
       state.byId[chatId].messages.push(msgId);
     },
-    [createChat]: (state, { payload }) => {
-      return [payload, ...state];
-    },
-    [deleteChat]: (state, { payload }) => {
-      return state.filter(chats => !chats.id.includes(payload));
-    },
+    // [createChat]: (state, { payload }) => {
+    //   return [payload, ...state];
+    // },
+    // [deleteChat]: (state, { payload }) => {
+    //   return state.filter(chats => !chats.id.includes(payload));
+    // },
   }
 );
 
@@ -90,8 +104,38 @@ const messages = createReducer(
         date: new Date('2021-12-19T03:40:00'),
         type: 'upcoming',
       },
+      [msgId[5]]: {
+        id: msgId[5],
+        name: 'Chuck Norris',
+        text: 'Hi! Do you want some jokes? You want!',
+        date: new Date('2013-12-19T03:40:00'),
+        type: 'incoming',
+      },
+      [msgId[6]]: {
+        id: msgId[6],
+        name: 'Chuck Norris',
+        text: 'Hmm... Sorry?',
+        date: new Date('2015-12-19T03:40:00'),
+        type: 'upcoming',
+      },
+      [msgId[7]]: {
+        id: msgId[7],
+        name: 'Chuck Norris',
+        text: 'Chuck Norris is the reason the penguins live in Antarctica.',
+        date: new Date('2022-01-19T13:40:00'),
+        type: 'incoming',
+      },
     },
-    ids: [msgId[0], msgId[1], msgId[2], msgId[3], msgId[4]],
+    ids: [
+      msgId[0],
+      msgId[1],
+      msgId[2],
+      msgId[3],
+      msgId[4],
+      msgId[5],
+      msgId[6],
+      msgId[7],
+    ],
   },
   {
     [sendMessage]: (state, action) => {
@@ -115,62 +159,9 @@ const activeChatId = createReducer('', {
   },
 });
 
-// const messaging = createReducer('', {
-//   [sendMessage]: (_, { payload }) => {
-//     return payload;
-//   },
-// });
-
 export default combineReducers({
   chats,
   messages,
   filter,
   activeChatId,
-  // messaging,
 });
-
-// //  ===== до розділення
-// const chats = createReducer(
-//   {
-//     byId: {
-//       [ids[0]]: {
-//         id: ids[0],
-//         name: 'Nancy Pelocy',
-//         photo: generator.generateRandomAvatar(),
-//         isOnline: true,
-//         isViewed: true,
-//         history: [
-//           {
-//             text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, voluptates!',
-//             date: new Date('2021-12-11T09:24:00'),
-//             type: 'upcoming',
-//           },
-//           {
-//             text: 'Lorem, ipsum.',
-//             date: new Date('2021-12-19T03:24:00'),
-//             type: 'upcoming',
-//           },
-//           {
-//             text: 'Lorem ipsum dolor sit amet consectetur.',
-//             date: new Date('2021-12-19T09:24:00'),
-//             type: 'incoming',
-//           },
-//         ],
-//       },
-//     },
-//     allIds: [ids[0], ids[1]],
-//   },
-//   {
-//     [sendMessage]: (state, action) => {
-//       //   const { payload } = action;
-//       //   const { id, data } = payload;
-
-//       },
-//     [createChat]: (state, { payload }) => {
-//       return [payload, ...state];
-//     },
-//     [deleteChat]: (state, { payload }) => {
-//       return state.filter(chats => !chats.id.includes(payload));
-//     },
-
-// );

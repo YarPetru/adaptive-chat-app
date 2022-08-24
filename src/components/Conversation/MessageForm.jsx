@@ -11,7 +11,6 @@ import s from './Conversation.module.scss';
 
 const MessageForm = () => {
   const [msg, setMsg] = useState('');
-  // const [isTyping, setIsTyping] = useState(false);
 
   const activeChatId = useSelector(chatSelectors.getActiveChatId);
 
@@ -21,18 +20,18 @@ const MessageForm = () => {
 
   const dispatch = useDispatch();
 
-  const [getAnswer, { data: answer, error: getAnswerError }] =
+  const [getAnswer, { data: answer, error: getAnswerError, isSuccess }] =
     useLazyGetAnswerQuery();
 
   const rednerAnswer = () => {
-    getAnswer();
-    dispatch(
-      sendMessage(currentChat.id, currentChat.name, answer.value, 'incoming')
-    );
-    !answer.value &&
-      getAnswerError &&
+    isSuccess &&
+      dispatch(
+        sendMessage(currentChat.id, currentChat.name, answer.value, 'incoming')
+      );
+
+    getAnswerError &&
       alert(
-        'Ups.Something went wrong. We can`t deliver the answer. Try again please'
+        'Oops.Something went wrong. We can`t deliver the answer. Try again please'
       );
   };
 
@@ -44,6 +43,7 @@ const MessageForm = () => {
     e.preventDefault();
     dispatch(sendMessage(currentChat.id, currentChat.name, msg, 'upcoming'));
     setMsg('');
+    getAnswer();
     setTimeout(rednerAnswer, 10000);
   };
 

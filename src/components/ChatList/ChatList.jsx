@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux/es/exports';
 import chatSelectors from 'redux/selectors';
 
 import * as actions from 'redux/actions';
+import chekPic from 'img/green-check.png';
 import s from './ChatList.module.scss';
 
 const ChatList = () => {
@@ -55,12 +56,22 @@ const ChatList = () => {
     dispatch(actions.selectChat(currentChatId));
   };
 
+  const openModal = () => {
+    alert(
+      'Уявімо, що після натискання кнопку тут відкривається модалка з формою, де необхідно ввести дані для нового діалогу, і по сабміту викликається action chats/create_chat'
+    );
+  };
+
   return (
     <>
       {chats && (
         <div className={s.chatsWrapper}>
-          <h2 className={s.title}>Chats</h2>
-
+          <div className={s.headerWrapper}>
+            <h2 className={s.title}>Chats</h2>
+            <button type="button" className={s.newChatBtn} onClick={openModal}>
+              Create new chat
+            </button>
+          </div>
           <ul className={s.chatList}>
             {sortedChats.length === 0 && (
               <p className={s.noChatsMsg}>There not related chats</p>
@@ -75,14 +86,25 @@ const ChatList = () => {
                 >
                   <div className={s.mainContentWrapper}>
                     <div className={s.contactStatusWrapper}>
-                      <img
-                        src={chat.photo}
-                        alt={`${chat.name} avatar`}
-                        width="60"
-                      />
-                      <p className={s.status}>
+                      <div className={s.avatarWrapper}>
+                        <img
+                          className={s.userAvatar}
+                          src={chat.photo}
+                          alt={`${chat.name} avatar`}
+                          width="60"
+                        />
+                        {chat.isOnline && (
+                          <img
+                            src={chekPic}
+                            alt="online"
+                            className={s.checkPic}
+                            width="16"
+                          />
+                        )}
+                      </div>
+                      {/* <p className={s.status}>
                         {chat.isOnline ? 'online' : 'offline'}
-                      </p>
+                      </p> */}
                     </div>
                     <div className={s.contactMsgWrapper}>
                       <h3 className={s.chatName}>{chat.name}</h3>
@@ -94,7 +116,6 @@ const ChatList = () => {
                       </p>
                     </div>
                   </div>
-                  {/* {messagesArr[chat.messages.length - 1].date && ( */}
                   <p className={s.lastMsgDate}>
                     {messagesObj[
                       chat.messages[chat.messages.length - 1]

@@ -6,24 +6,16 @@ const generator = new AvatarGenerator();
 
 export const createChat = createAction(
   'chats/create_chat',
-  (name, isOnline, isViewed) => ({
+  (name, isOnline) => ({
     payload: {
       id: nanoid(),
       name,
       photo: generator.generateRandomAvatar(),
       isOnline,
-      isViewed,
+      messages: [],
     },
   })
 );
-
-// export const sendMessage = createAction('chats/send_message', text => ({
-//   payload: {
-//     text,
-//     date: new Date(),
-//     type: 'upcoming',
-//   },
-// }));
 
 export const sendMessage = createAction(
   'chats/send_message',

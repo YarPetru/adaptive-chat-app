@@ -1,11 +1,9 @@
 import { useSelector } from 'react-redux/es/exports';
 
-// import chatSelectors from 'redux/selectors';
-
+import chekPic from 'img/green-check.png';
 import s from './Conversation.module.scss';
 
 const Title = () => {
-  // const currentChat = useSelector(chatSelectors.getCurrentChat());
   const currentChat = useSelector(
     state => state.listing.chats.byId[state.listing.activeChatId]
   );
@@ -14,16 +12,25 @@ const Title = () => {
     <div className={s.titleWrapper}>
       {currentChat && (
         <>
-          <img
-            className={s.chatAvatar}
-            src={currentChat.photo}
-            alt={`${currentChat.name} avatar`}
-            width="60"
-          />
+          <div className={s.avatarWrapper}>
+            <img
+              className={s.userAvatar}
+              src={currentChat.photo}
+              alt={`${currentChat.name} avatar`}
+              width="60"
+            />
+            {currentChat.isOnline ? (
+              <img
+                src={chekPic}
+                alt="online"
+                className={s.checkPic}
+                width="16"
+              />
+            ) : (
+              <p className={s.status}>{`offline`}</p>
+            )}
+          </div>
           <h3 className={s.chatTitle}>{currentChat.name}</h3>
-          <p className={s.status}>
-            {currentChat.isOnline ? 'online' : 'offline'}
-          </p>
         </>
       )}
       {!currentChat && <p>Choose chat</p>}

@@ -1,13 +1,27 @@
 .chatControlsSection {
   box-sizing: border-box;
   width: 40%;
-  // max-height: 70vh;
   background-color: white;
-  // overflow: auto;
 }
 
 .chatControlsHeader {
   padding: 15px;
   background-color: var(--dark-background);
   border-bottom: 1px solid var(--border-color);
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 60px;
+}
+
+.userAvatar {
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+
+.checkPic {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
