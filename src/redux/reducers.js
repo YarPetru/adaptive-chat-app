@@ -1,6 +1,9 @@
 import { createReducer, combineReducers } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
-import { AvatarGenerator } from 'random-avatar-generator';
+
+import nancyAvatar from '../img/start-avatars/pelosi-avatar.jpg';
+import victorAvatar from '../img/start-avatars/hugo-avatar.jpg';
+import chuckAvatar from '../img/start-avatars/chuck-avatar.jpg';
 
 import {
   sendMessage,
@@ -9,8 +12,6 @@ import {
   // createChat,
   // deleteChat,
 } from './actions';
-
-const generator = new AvatarGenerator();
 
 const chatsId = [nanoid(), nanoid(), nanoid()];
 const msgId = [
@@ -29,22 +30,22 @@ const chats = createReducer(
     byId: {
       [chatsId[0]]: {
         id: chatsId[0],
-        name: 'Nancy Pelocy',
-        photo: generator.generateRandomAvatar(),
+        name: 'Nancy Pelosi',
+        photo: nancyAvatar,
         isOnline: true,
         messages: [msgId[0], msgId[1], msgId[2]],
       },
       [chatsId[1]]: {
         id: chatsId[1],
-        name: 'Victor Huho',
-        photo: generator.generateRandomAvatar(),
+        name: 'Victor Hugo',
+        photo: victorAvatar,
         isOnline: true,
         messages: [msgId[3], msgId[4]],
       },
       [chatsId[2]]: {
         id: chatsId[2],
         name: 'Chuck Norris',
-        photo: generator.generateRandomAvatar(),
+        photo: chuckAvatar,
         isOnline: false,
         messages: [msgId[5], msgId[6], msgId[7]],
       },
@@ -78,35 +79,35 @@ const messages = createReducer(
     byId: {
       [msgId[0]]: {
         id: msgId[0],
-        name: 'Nancy Pelocy',
+        name: 'Nancy PePelosilocy',
         text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, voluptates!',
         date: new Date('2021-12-11T09:24:00'),
         type: 'upcoming',
       },
       [msgId[1]]: {
         id: msgId[1],
-        name: 'Nancy Pelocy',
+        name: 'Nancy Pelosi',
         text: 'Lorem, ipsum.',
         date: new Date('2021-12-19T03:24:00'),
         type: 'upcoming',
       },
       [msgId[2]]: {
         id: msgId[2],
-        name: 'Nancy Pelocy',
+        name: 'Nancy Pelosi',
         text: 'Lorem ipsum dolor sit amet consectetur.',
         date: new Date('2021-12-19T09:24:00'),
         type: 'incoming',
       },
       [msgId[3]]: {
         id: msgId[3],
-        name: 'Victor Huho',
+        name: 'Victor Hugo',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia saepe ut beatae accusantium.',
         date: new Date('2021-12-17T03:24:00'),
         type: 'incoming',
       },
       [msgId[4]]: {
         id: msgId[4],
-        name: 'Victor Huho',
+        name: 'Victor Hugo',
         text: 'Lorem ipsum dolor sit amet consectetur.',
         date: new Date('2021-12-19T03:40:00'),
         type: 'upcoming',

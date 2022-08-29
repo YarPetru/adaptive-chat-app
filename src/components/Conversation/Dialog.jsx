@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux/es/exports';
-import { useRef, useEffect } from 'react';
+// import { useRef, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
 import chatSelectors from 'redux/selectors';
 import s from './Conversation.module.scss';
 
 const Dialog = () => {
-  const bottomRef = useRef(null);
+  // const bottomRef = useRef(null);
   const messagesObj = useSelector(chatSelectors.getMessages).byId;
 
   const currentChatId = useSelector(chatSelectors.getActiveChatId);
@@ -28,9 +28,9 @@ const Dialog = () => {
     id => currentMessagesObj[id]
   );
 
-  useEffect(() => {
-    bottomRef.current.scrollIntoView({ behavior: 'smooth' });
-  }, [currentMessagesArr]);
+  // useEffect(() => {
+  //   bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+  // }, [currentMessagesArr]);
 
   return (
     <div className={s.dialogWrapper}>
@@ -49,6 +49,7 @@ const Dialog = () => {
                 <div className={s.messageWrapper}>
                   {message.type === 'incoming' && (
                     <img
+                      className={s.userAvatar}
                       src={currentChat.photo}
                       alt={`${currentChat.name} avatar`}
                       width="50"
@@ -85,7 +86,7 @@ const Dialog = () => {
               </li>
             ))}
         </ul>
-        <div ref={bottomRef} />
+        {/* <div ref={bottomRef} /> */}
       </div>
     </div>
   );

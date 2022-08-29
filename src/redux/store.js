@@ -11,7 +11,6 @@ import {
   //   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { answerApi } from './answerApi/answerSlice';
 
 import chats from './reducers';
 
@@ -25,7 +24,6 @@ const persistedReducer = persistReducer(persistConfig, chats);
 
 export const store = configureStore({
   reducer: {
-    [answerApi.reducerPath]: answerApi.reducer,
     listing: persistedReducer,
   },
   middleware: getDefaultMiddleware => [
@@ -35,7 +33,6 @@ export const store = configureStore({
       //     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       //   },
     }),
-    answerApi.middleware,
   ],
 });
 

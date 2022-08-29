@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { IconContext } from 'react-icons';
 import { MdOutlineSend } from 'react-icons/md';
+import { toast } from 'react-toastify';
+
+import { getAnswer } from 'services/api';
 
 import { sendMessage } from 'redux/actions';
 import chatSelectors from 'redux/selectors';
-import { useLazyGetAnswerQuery } from 'redux/answerApi/answerSlice';
 
 import s from './Conversation.module.scss';
 
@@ -20,19 +22,21 @@ const MessageForm = () => {
 
   const dispatch = useDispatch();
 
-  const [getAnswer, { data: answer, error: getAnswerError, isSuccess }] =
-    useLazyGetAnswerQuery();
-
-  const rednerAnswer = () => {
-    isSuccess &&
+  const fetchAnswer = async () => {
+    try {
+      const answer = await getAnswer();
       dispatch(
-        sendMessage(currentChat.id, currentChat.name, answer.value, 'incoming')
+        sendMessage(currentChat.id, currentChat.name, answer, 'incoming')
       );
-
-    getAnswerError &&
-      alert(
-        'Oops.Something went wrong. We can`t deliver the answer. Try again please'
-      );
+      toast(`You recieved new message from ${currentChat.name}`, {
+        toastId: 'notice1',
+      });
+    } catch (error) {
+      toast.error(`Message delivery error. Please try again`, {
+        toastId: 'error1',
+        info: error.message,
+      });
+    }
   };
 
   const handleInputChange = e => {
@@ -43,8 +47,7 @@ const MessageForm = () => {
     e.preventDefault();
     dispatch(sendMessage(currentChat.id, currentChat.name, msg, 'upcoming'));
     setMsg('');
-    getAnswer();
-    setTimeout(rednerAnswer, 6000);
+    setTimeout(fetchAnswer, 6000);
   };
 
   return (
