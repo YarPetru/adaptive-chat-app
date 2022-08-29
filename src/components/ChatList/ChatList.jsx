@@ -3,6 +3,7 @@ import chatSelectors from 'redux/selectors';
 
 import * as actions from 'redux/actions';
 import chekPic from 'img/green-check.png';
+// import { ReactComponent as CloseIcon } from 'img/error-20.svg';
 import s from './ChatList.module.scss';
 
 const ChatList = () => {
@@ -56,11 +57,17 @@ const ChatList = () => {
     dispatch(actions.selectChat(currentChatId));
   };
 
-  const openModal = () => {
+  // const onDeleteBtnClick = chatId => {
+  //   dispatch(actions.deleteChat(chatId));
+  // };
+
+  const openAddNewChatModal = () => {
     alert(
       'Уявімо, що після натискання на кнопку тут відкривається модалка з формою, де необхідно ввести дані для нового діалогу, і по сабміту викликається action chats/create_chat'
     );
   };
+
+  // const openRemoveChatModal = () => {};
 
   return (
     <>
@@ -68,7 +75,11 @@ const ChatList = () => {
         <div className={s.chatsWrapper}>
           <div className={s.headerWrapper}>
             <h2 className={s.title}>Chats</h2>
-            <button type="button" className={s.newChatBtn} onClick={openModal}>
+            <button
+              type="button"
+              className={s.newChatBtn}
+              onClick={openAddNewChatModal}
+            >
               Create new chat
             </button>
           </div>
@@ -102,9 +113,6 @@ const ChatList = () => {
                           />
                         )}
                       </div>
-                      {/* <p className={s.status}>
-                        {chat.isOnline ? 'online' : 'offline'}
-                      </p> */}
                     </div>
                     <div className={s.contactMsgWrapper}>
                       <h3 className={s.chatName}>{chat.name}</h3>
@@ -125,6 +133,13 @@ const ChatList = () => {
                       year: 'numeric',
                     })}
                   </p>
+                  {/* <button
+                    type="button"
+                    className={s.deleteChatButton}
+                    onClick={openRemoveChatModal}
+                  >
+                    <CloseIcon className={s.closeIcon} width="16" height="16" />
+                  </button> */}
                 </li>
               ))}
           </ul>

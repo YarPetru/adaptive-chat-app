@@ -33,6 +33,8 @@ export const sendMessage = createAction(
 
 export const deleteChat = createAction('chats/delete_chat');
 
+export const clearHistory = createAction('chats/clear_history');
+
 export const selectChat = createAction('chats/select_chat');
 
 export const findChat = createAction('chats/find_chat');

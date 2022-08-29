@@ -46,6 +46,7 @@
 }
 
 .chatItem {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,4 +107,33 @@
   width: 20%;
   color: var(--secondary-font-color);
   font-size: var(--medium-font-size);
+}
+
+.deleteChatButton {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  right: 0px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+
+  &:hover .closeIcon {
+    fill: var(--accent-color);
+  }
+}
+
+.closeIcon {
+  fill: var(--dark-blue);
+  transition: var(--basic-transition);
+
+  // &:hover {
+  //   fill: var(--accent-color);
+  // }
 }

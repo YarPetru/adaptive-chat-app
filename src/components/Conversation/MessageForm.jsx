@@ -44,7 +44,7 @@ const MessageForm = () => {
     dispatch(sendMessage(currentChat.id, currentChat.name, msg, 'upcoming'));
     setMsg('');
     getAnswer();
-    setTimeout(rednerAnswer, 10000);
+    setTimeout(rednerAnswer, 6000);
   };
 
   return (

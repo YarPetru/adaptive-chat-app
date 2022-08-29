@@ -1,8 +1,7 @@
 .mainContainer {
   display: flex;
+  justify-content: center;
   width: 1170px;
   height: 600px;
   margin: 0 auto;
-  background-color: var(--main-background);
-  border: 1px solid var(--border-color);
 }

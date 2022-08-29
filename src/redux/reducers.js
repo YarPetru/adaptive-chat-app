@@ -61,7 +61,14 @@ const chats = createReducer(
     //   return [payload, ...state];
     // },
     // [deleteChat]: (state, { payload }) => {
-    //   return state.filter(chats => !chats.id.includes(payload));
+    //   const chatsObj = state.byId;
+    //   // console.log(payload);
+    //   Object.keys(chatsObj)
+    //     .filter(chatId => chatId === payload)
+    //     .reduce((updatedObj, chatId) => {
+    //       updatedObj[chatId] = chatsObj[chatId];
+    //       return console.log(updatedObj);
+    //     }, {});
     // },
   }
 );
