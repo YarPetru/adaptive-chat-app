@@ -9,15 +9,26 @@
   border: 1px solid var(--border-color);
   border-radius: var(--main-border-radius);
   background-color: var(--main-background);
-  color: var(--main-font-color);
+  color: var(--dark-blue);
 
   font-size: var(--main-font-size);
   font-family: inherit;
+  transition: var(--basic-transition);
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--light-blue);
+  }
 
   &::placeholder {
     color: var(--secondary-font-color);
     font-size: var(--main-font-size);
     font-weight: 300;
+  }
+
+  &:hover + .searchIcon,
+  &:focus + .searchIcon {
+    fill: var(--dark-blue);
   }
 }
 
@@ -27,4 +38,5 @@
   left: 10px;
   fill: var(--secondary-font-color);
   transform: translateY(-50%);
+  transition: var(--basic-transition);
 }
