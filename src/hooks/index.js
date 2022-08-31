@@ -1,1 +1,1 @@
-export { default } from './useMatchMedia';
+export { default as useMatchMedia } from './useMatchMedia';

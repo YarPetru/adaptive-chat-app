@@ -1,8 +1,9 @@
 // Conversation
 
 .conversationSection {
+  position: relative;
   box-sizing: border-box;
-  min-width: 400px;
+  width: 600px;
   border-left: 1px solid var(--border-color);
   border-top: 2px solid var(--border-color);
   border-right: 2px solid var(--border-color);
@@ -14,10 +15,8 @@
   display: flex;
   justify-content: left;
   align-items: center;
-
   width: 100%;
   padding: 15px;
-
   background-color: var(--dark-background);
   border-bottom: 1px solid var(--border-color);
 }
@@ -56,17 +55,18 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 434px;
-  overflow: auto;
+  height: 425px;
+  overflow-y: scroll;
 }
 
 .upcomingMessageItem {
   align-self: flex-end;
   padding: 10px 15px;
+  max-width: 70%;
 }
 
 .incomingMessageItem {
-  width: 70%;
+  max-width: 70%;
   padding: 10px;
 }
 
@@ -106,10 +106,15 @@
   padding-left: 75px;
 }
 
+.emptyDiv {
+  height: 70px;
+}
+
 // MessageForm
 
 .sendMsgForm {
-  position: relative;
+  position: absolute;
+  bottom: 0px;
   box-sizing: border-box;
   width: 100%;
   padding: 15px;

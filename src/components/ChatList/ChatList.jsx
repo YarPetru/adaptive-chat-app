@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import chatSelectors from 'redux/selectors';
-
 import * as actions from 'redux/actions';
 import chekPic from 'img/green-check.png';
 // import { ReactComponent as CloseIcon } from 'img/error-20.svg';
@@ -83,6 +82,11 @@ const ChatList = () => {
               Create new chat
             </button>
           </div>
+          {/* <div
+            className={s.chatListWrapper}
+            style={{ height: hasScroll ? '120px' : 'auto', minHeight: '120px' }}
+            ref={chatsWrap}
+          > */}
           <ul className={s.chatList}>
             {sortedChats.length === 0 && (
               <p className={s.noChatsMsg}>There not related chats</p>
@@ -116,23 +120,27 @@ const ChatList = () => {
                     </div>
                     <div className={s.contactMsgWrapper}>
                       <h3 className={s.chatName}>{chat.name}</h3>
-                      <p className={s.lastMsgText}>
-                        {
-                          messagesObj[chat.messages[chat.messages.length - 1]]
-                            .text
-                        }
-                      </p>
+                      {chat.messages.length !== 0 && (
+                        <p className={s.lastMsgText}>
+                          {
+                            messagesObj[chat.messages[chat.messages.length - 1]]
+                              .text
+                          }
+                        </p>
+                      )}
                     </div>
                   </div>
-                  <p className={s.lastMsgDate}>
-                    {messagesObj[
-                      chat.messages[chat.messages.length - 1]
-                    ].date.toLocaleString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric',
-                    })}
-                  </p>
+                  {chat.messages.length !== 0 && (
+                    <p className={s.lastMsgDate}>
+                      {messagesObj[
+                        chat.messages[chat.messages.length - 1]
+                      ].date.toLocaleString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
+                      })}
+                    </p>
+                  )}
                   {/* <button
                     type="button"
                     className={s.deleteChatButton}
@@ -143,6 +151,7 @@ const ChatList = () => {
                 </li>
               ))}
           </ul>
+          {/* </div> */}
         </div>
       )}
     </>

@@ -13,7 +13,7 @@ import {
   // deleteChat,
 } from './actions';
 
-const chatsId = [nanoid(), nanoid(), nanoid()];
+const chatsId = [nanoid(), nanoid(), nanoid(), nanoid(), nanoid(), nanoid()];
 const msgId = [
   nanoid(),
   nanoid(),
@@ -49,8 +49,36 @@ const chats = createReducer(
         isOnline: false,
         messages: [msgId[5], msgId[6], msgId[7]],
       },
+      [chatsId[3]]: {
+        id: chatsId[3],
+        name: 'Nancy Pelosi',
+        photo: nancyAvatar,
+        isOnline: true,
+        messages: [],
+      },
+      [chatsId[4]]: {
+        id: chatsId[4],
+        name: 'Victor Hugo',
+        photo: victorAvatar,
+        isOnline: true,
+        messages: [],
+      },
+      [chatsId[5]]: {
+        id: chatsId[5],
+        name: 'Chuck Norris',
+        photo: chuckAvatar,
+        isOnline: false,
+        messages: [],
+      },
     },
-    ids: [chatsId[0], chatsId[1]],
+    ids: [
+      chatsId[0],
+      chatsId[1],
+      chatsId[2],
+      chatsId[3],
+      chatsId[4],
+      chatsId[5],
+    ],
   },
   {
     [sendMessage]: (state, action) => {

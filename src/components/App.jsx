@@ -9,11 +9,8 @@ import Layout from './Layout';
 import useMatchMedia from 'hooks/useMatchMedia';
 
 export const App = () => {
-  const { isMobile, isTablet, isDesktop } = useMatchMedia();
+  const { isMobile } = useMatchMedia();
 
-  // console.log(useMatchMedia());
-
-  console.log(isMobile, isTablet, isDesktop);
   const activeChatId = useSelector(chatSelectors.getActiveChatId);
   return (
     <>
