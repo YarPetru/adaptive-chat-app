@@ -125,7 +125,7 @@
 .sendMsgInput {
   width: 100%;
 
-  padding: 8px 12px;
+  padding: 8px 14px;
   outline: none;
   border: 1px solid var(--border-color);
   border-radius: var(--main-border-radius);
@@ -133,6 +133,12 @@
 
   font-size: var(--main-font-size);
   font-family: inherit;
+  transition: var(--basic-transition);
+
+  &:hover,
+  &:focus {
+    border-color: var(--dark-blue);
+  }
 
   &::placeholder {
     color: var(--secondary-font-color);

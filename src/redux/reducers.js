@@ -4,13 +4,14 @@ import { nanoid } from 'nanoid';
 import nancyAvatar from '../img/start-avatars/pelosi-avatar.jpg';
 import victorAvatar from '../img/start-avatars/hugo-avatar.jpg';
 import chuckAvatar from '../img/start-avatars/chuck-avatar.jpg';
+import borisAvatar from '../img/start-avatars/boris-avatar.jpg';
 
 import {
   sendMessage,
   selectChat,
   findChat,
-  // createChat,
-  // deleteChat,
+  createChat,
+  deleteChat,
 } from './actions';
 
 const chatsId = [nanoid(), nanoid(), nanoid(), nanoid(), nanoid(), nanoid()];
@@ -51,8 +52,8 @@ const chats = createReducer(
       },
       [chatsId[3]]: {
         id: chatsId[3],
-        name: 'Nancy Pelosi',
-        photo: nancyAvatar,
+        name: 'Boris Johnson_UK',
+        photo: borisAvatar,
         isOnline: true,
         messages: [],
       },
@@ -86,19 +87,13 @@ const chats = createReducer(
       const msgId = action.payload.id;
       state.byId[chatId].messages.push(msgId);
     },
-    // [createChat]: (state, { payload }) => {
-    //   return [payload, ...state];
-    // },
-    // [deleteChat]: (state, { payload }) => {
-    //   const chatsObj = state.byId;
-    //   // console.log(payload);
-    //   Object.keys(chatsObj)
-    //     .filter(chatId => chatId === payload)
-    //     .reduce((updatedObj, chatId) => {
-    //       updatedObj[chatId] = chatsObj[chatId];
-    //       return console.log(updatedObj);
-    //     }, {});
-    // },
+    [createChat]: (state, { payload }) => {
+      state.ids.push(payload.id);
+      state.byId[payload.id] = payload;
+    },
+    [deleteChat]: (state, { payload }) => {
+      delete state.byId[payload];
+    },
   }
 );
 

@@ -36,7 +36,7 @@
 
 .chatList {
   max-height: 400px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .noChatsMsg {
@@ -136,11 +136,11 @@
   }
 }
 
-// .closeIcon {
-//   fill: var(--dark-blue);
-//   transition: var(--basic-transition);
+.closeIcon {
+  fill: var(--dark-blue);
+  transition: var(--basic-transition);
 
-//   &:hover {
-//     fill: var(--accent-color);
-//   }
-// }
+  &:hover {
+    fill: var(--accent-color);
+  }
+}

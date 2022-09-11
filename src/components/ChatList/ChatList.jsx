@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import chatSelectors from 'redux/selectors';
 import * as actions from 'redux/actions';
 import chekPic from 'img/green-check.png';
-// import { ReactComponent as CloseIcon } from 'img/error-20.svg';
+import { ReactComponent as CloseIcon } from 'img/delete-20.svg';
+import Modal from 'components/Modal';
+import { DeleteContactModalContent } from 'components/Modal/DeleteContactModalContent';
+import { AddContactModalForm } from 'components/Modal/AddContactModalForm';
 import s from './ChatList.module.scss';
 
 const ChatList = () => {
@@ -10,6 +14,10 @@ const ChatList = () => {
   const messages = useSelector(chatSelectors.getMessages);
   const chats = useSelector(chatSelectors.getChats);
   const chatsArr = Object.keys(chats.byId).map(id => chats.byId[id]);
+  const currentChatId = useSelector(chatSelectors.getActiveChatId);
+  const currentChat = useSelector(
+    state => state.listing.chats.byId[currentChatId]
+  );
 
   const dispatch = useDispatch();
 
@@ -19,6 +27,10 @@ const ChatList = () => {
   const filteredChats = chatsArr.filter(item =>
     item.name.toLowerCase().includes(filterValue.toLowerCase())
   );
+
+  // фільтр по повідомленням - пройтись по повідомленням,
+  // найти співпадіння та записати id повідомлень, де є співпадіння,
+  // повернути елементи chatsArr, де зустрічаються ці id
 
   // 1------------сортуємо масив messagesArr по даті
   const sortedMessagesArr = messagesArr.sort(function (a, b) {
@@ -56,17 +68,35 @@ const ChatList = () => {
     dispatch(actions.selectChat(currentChatId));
   };
 
-  // const onDeleteBtnClick = chatId => {
-  //   dispatch(actions.deleteChat(chatId));
-  // };
-
-  const openAddNewChatModal = () => {
-    alert(
-      'Уявімо, що після натискання на кнопку тут відкривається модалка з формою, де необхідно ввести дані для нового діалогу, і по сабміту викликається action chats/create_chat'
-    );
+  const onDeleteBtnClick = currentChatId => {
+    dispatch(actions.deleteChat(currentChatId));
+    setIsDeleteModalOpen(false);
   };
 
-  // const openRemoveChatModal = () => {};
+  //  modal
+  // const  = () => {};
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const openRemoveChatModal = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsDeleteModalOpen(false);
+    setIsAddModalOpen(false);
+  };
+
+  const openAddNewChatModal = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const addContact = (values, formActions) => {
+    const contactName = values.contactName;
+    dispatch(actions.createChat(contactName));
+    formActions.resetForm();
+    setIsAddModalOpen(false);
+  };
 
   return (
     <>
@@ -82,11 +112,6 @@ const ChatList = () => {
               Create new chat
             </button>
           </div>
-          {/* <div
-            className={s.chatListWrapper}
-            style={{ height: hasScroll ? '120px' : 'auto', minHeight: '120px' }}
-            ref={chatsWrap}
-          > */}
           <ul className={s.chatList}>
             {sortedChats.length === 0 && (
               <p className={s.noChatsMsg}>There not related chats</p>
@@ -141,18 +166,37 @@ const ChatList = () => {
                       })}
                     </p>
                   )}
-                  {/* <button
-                    type="button"
-                    className={s.deleteChatButton}
-                    onClick={openRemoveChatModal}
-                  >
-                    <CloseIcon className={s.closeIcon} width="16" height="16" />
-                  </button> */}
+                  {currentChatId && (
+                    <button
+                      type="button"
+                      className={s.deleteChatButton}
+                      onClick={openRemoveChatModal}
+                    >
+                      <CloseIcon
+                        className={s.closeIcon}
+                        width="16"
+                        height="16"
+                      />
+                    </button>
+                  )}
                 </li>
               ))}
           </ul>
-          {/* </div> */}
         </div>
+      )}
+      {isDeleteModalOpen && (
+        <Modal onClose={closeModal}>
+          <DeleteContactModalContent
+            onDelete={() => onDeleteBtnClick(currentChat.id)}
+            onCancel={closeModal}
+            contactName={currentChat.name}
+          />
+        </Modal>
+      )}
+      {isAddModalOpen && (
+        <Modal onClose={closeModal}>
+          <AddContactModalForm handleSubmit={addContact} onClose={closeModal} />
+        </Modal>
       )}
     </>
   );

@@ -28,9 +28,7 @@ const MessageForm = () => {
       dispatch(
         sendMessage(currentChat.id, currentChat.name, answer, 'incoming')
       );
-      toast(`You recieved new message from ${currentChat.name}`, {
-        toastId: 'notice1',
-      });
+      toast(`You recieved new message from ${currentChat.name}`);
     } catch (error) {
       toast.error(`Message delivery error. Please try again`, {
         toastId: 'error1',

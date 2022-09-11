@@ -77,4 +77,9 @@ input {
   --medium-font-size: 12px;
   // transition
   --basic-transition: 150ms cubic-bezier(0, 0, 1, 1) 150ms;
+  // shadow
+  --box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  --btn-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  --btn-shadow-hover: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }

@@ -1,0 +1,148 @@
+// modal
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #4e8198aa;
+  z-index: 1000;
+}
+
+.modal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  box-shadow: var(--box-shadow);
+
+  width: 380px;
+  max-height: 90%;
+  background-color: white;
+  border-radius: var(--main-border-radius);
+  text-align: center;
+}
+
+.closeModalButton {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+
+  &:hover .closeIcon {
+    fill: var(--accent-color);
+  }
+}
+
+.closeIcon {
+  fill: var(--dark-blue);
+  transition: var(--basic-transition);
+
+  &:hover {
+    fill: var(--accent-color);
+  }
+}
+
+// .form {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   margin: 0px auto;
+//   max-height: 240px;
+//   width: 300px;
+// }
+
+// ============Common
+.buttonsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.formBtn {
+  padding: 4px 20px;
+  min-width: 120px;
+  border: 1px solid var(--light-blue);
+  border-radius: var(--secondary-border-radius);
+  background-color: white;
+
+  font-family: inherit;
+  transition: var(--basic-transition);
+  box-shadow: var(--btn-shadow);
+
+  &:first-child {
+    margin-right: 10px;
+  }
+
+  &:hover {
+    background-color: var(--light-blue);
+    box-shadow: var(--btn-shadow-hover);
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.cancelBtn {
+  border: 1px solid var(--accent-color);
+
+  &:hover {
+    background-color: var(--accent-color);
+  }
+}
+
+// ============AddContactModal
+.formFieldsWrapper {
+  margin-top: 40px;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 4px 14px;
+  font-size: var(--main-font-size);
+  color: var(--dark-blue);
+
+  font-family: inherit;
+  outline: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--main-border-radius);
+  transition: var(--basic-transition);
+
+  &:hover,
+  &:focus {
+    border-color: var(--dark-blue);
+  }
+}
+
+.errorMessage {
+  color: var(--accent-color);
+  font-size: var(--medium-font-size);
+}
+
+// ============DeleteContactModal
+
+.deleteModalWrapper {
+  margin-top: 40px;
+}
+
+// .modalText {
+//   font-size: var(--large-font-size);
+// }
