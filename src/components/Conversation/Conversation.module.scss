@@ -155,4 +155,10 @@
   border: none;
   background-color: white;
   cursor: pointer;
+  color: var(--dark-blue);
+  transition: var(--basic-transition);
+
+  &:hover {
+    color: var(--light-blue);
+  }
 }

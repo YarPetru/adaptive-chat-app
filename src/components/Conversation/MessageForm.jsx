@@ -51,7 +51,7 @@ const MessageForm = () => {
   return (
     <IconContext.Provider
       value={{
-        style: { verticalAlign: 'middle', color: 'var(--dark-blue)' },
+        style: { verticalAlign: 'middle' },
         className: 'sendIcon',
       }}
     >
@@ -69,7 +69,7 @@ const MessageForm = () => {
           onChange={handleInputChange}
         />
         <button className={s.sendMsgBtn} type="submit">
-          <MdOutlineSend />
+          <MdOutlineSend size="24" />
         </button>
       </form>
     </IconContext.Provider>
